@@ -29,6 +29,7 @@ class ScreenFourFragment : BaseFragment(R.layout.fragment_screen_four) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentScreenFourBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
+        rewrite()
     }
 
     fun rewrite() {

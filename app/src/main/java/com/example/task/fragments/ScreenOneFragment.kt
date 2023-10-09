@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import com.example.task.R
 import com.example.task.base.BaseFragment
@@ -52,6 +53,9 @@ class ScreenOneFragment : BaseFragment(R.layout.fragment_screen_one) {
                 inputEt.text = null
                 val sfc : ScreenFourFragment = parentFragmentManager.findFragmentByTag(ScreenFourFragment.SCREEN_FOUR_FRAGMENT_TAG) as ScreenFourFragment
                 sfc.rewrite()
+            }
+            inputEt.doOnTextChanged { text, start, before, count ->
+                saveBtn.isEnabled = inputEt.text?.length != 0
             }
         }
     }

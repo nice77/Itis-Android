@@ -18,19 +18,18 @@ class MainActivity : BaseActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
-        supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_container,
-                ScreenOneFragment.getInstance(),
-                ScreenOneFragment.SCREEN_ONE_FRAGMENT_TAG)
-            .commit()
-
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
             binding?.apply {
                 fragmentContainerSpec.isVisible = true
             }
             supportFragmentManager.beginTransaction()
-                .add(
+                .replace(
+                    R.id.fragment_container,
+                    ScreenOneFragment.getInstance(),
+                    ScreenOneFragment.SCREEN_ONE_FRAGMENT_TAG
+                )
+                .replace(
                     R.id.fragment_container_spec,
                     ScreenFourFragment.getInstance(),
                     ScreenFourFragment.SCREEN_FOUR_FRAGMENT_TAG
@@ -41,6 +40,12 @@ class MainActivity : BaseActivity() {
             binding?.apply {
                 fragmentContainerSpec.isVisible = false
             }
+
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container,
+                    ScreenOneFragment.getInstance(),
+                    ScreenOneFragment.SCREEN_ONE_FRAGMENT_TAG)
+                .commit()
         }
     }
 }
