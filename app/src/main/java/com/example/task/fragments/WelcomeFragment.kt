@@ -18,7 +18,6 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentWelcomeBinding.inflate(layoutInflater)
-        println("onCreate WelcomeFragment")
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
@@ -26,12 +25,12 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentWelcomeBinding.bind(view)
 
-        println("created WelcomeFragment")
-
         binding?.let {
             it.submitBtn.setOnClickListener { _ ->
-                if (Integer.parseInt(it.inputEt.text.toString()) > 45) {
-                    it.inputEt.error = R.string.input_et_error.toString()
+                if (it.inputEt.text.isEmpty() ||
+                    Integer.parseInt(it.inputEt.text.toString()) <= 0 ||
+                    Integer.parseInt(it.inputEt.text.toString()) > 45) {
+                    it.inputEt.error = getString(R.string.input_et_error)
                 }
                 else {
                     parentFragmentManager.beginTransaction()

@@ -4,11 +4,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.task.databinding.ItemButtonBinding
 
 class ButtonListItem(
-    private val binding : ItemButtonBinding
+    private val binding : ItemButtonBinding,
+    private val onButtonClicked : () -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind() {
-
+    init {
+        binding.openBottomSheetBtn.setOnClickListener {
+            onButtonClicked()
+        }
     }
 
 }
