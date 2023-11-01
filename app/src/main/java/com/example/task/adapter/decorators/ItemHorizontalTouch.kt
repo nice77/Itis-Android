@@ -9,9 +9,12 @@ class ItemHorizontalTouch : ItemTouchHelper.Callback() {
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder
     ): Int {
-        val dragFlags = 0
-        val swipeFlags = ItemTouchHelper.START
-        return makeMovementFlags(dragFlags, swipeFlags)
+        if (viewHolder is NewsListItem) {
+            val dragFlags = 0
+            val swipeFlags = ItemTouchHelper.START
+            return makeMovementFlags(dragFlags, swipeFlags)
+        }
+        return makeMovementFlags(0, 0)
     }
 
     override fun onMove(
