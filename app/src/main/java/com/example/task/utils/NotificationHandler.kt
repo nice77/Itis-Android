@@ -57,6 +57,7 @@ object NotificationHandler {
         if (NotificationSettings.buttonsShowUp) {
             val intentActionOne = Intent(ctx, MainActivity::class.java)
                 .putExtra(ACTION_KEY, ACTION_VALUE_ONE)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             val actionOne = PendingIntent.getActivity(
                 ctx,
                 101,
@@ -68,6 +69,7 @@ object NotificationHandler {
 
             val intentActionTwo = Intent(ctx, MainActivity::class.java)
                 .putExtra(ACTION_KEY, ACTION_VALUE_TWO)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             val actionTwo = PendingIntent.getActivity(
                 ctx,
                 102,

@@ -1,6 +1,7 @@
 package com.example.task
 
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
@@ -12,20 +13,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import com.example.task.databinding.ActivityMainBinding
+import com.example.task.utils.CoroutinesSettings
 import com.example.task.utils.NotificationHandler
 import com.example.task.utils.NotificationSettings
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.CancellationException
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
-    private var binding : ActivityMainBinding ?= null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-
 
         NotificationHandler.initNotificationManager(this)
         requestPermission()
@@ -45,11 +43,12 @@ class MainActivity : AppCompatActivity() {
         if (intent.extras?.getString(NotificationHandler.ACTION_KEY) == NotificationHandler.ACTION_VALUE_ONE) {
             navController.navigate(R.id.mainFragment)
             NotificationHandler.notificationManager.cancel(NotificationHandler.NOTIFICATION_ID)
-            Toast.makeText(this, "Opened from notifications", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.toast_text), Toast.LENGTH_SHORT).show()
             NotificationHandler.closeNotification()
         }
         else if (intent.extras?.getString(NotificationHandler.ACTION_KEY) == NotificationHandler.ACTION_VALUE_TWO) {
-            navController.navigate(R.id.notificationsFragment)
+            val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navbar)
+            bottomNavigationView.selectedItemId = R.id.notificationsFragment
             NotificationHandler.closeNotification()
         }
         intent.removeExtra(NotificationHandler.ACTION_KEY)
@@ -95,6 +94,25 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        CoroutinesSettings.isCollapsed = true
+        println("Called onStop: ${CoroutinesSettings.isCollapsed}")
+        if (CoroutinesSettings.isAsync) {
+            try {
+                CoroutinesSettings.cancelAll()
+            } catch (e : CancellationException) {
+                println("Job is cancelled")
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        CoroutinesSettings.isCollapsed = false
+        println("Called onResume: ${CoroutinesSettings.isCollapsed}")
     }
 
     companion object {
