@@ -56,7 +56,7 @@ class CoroutinesFragment : Fragment(R.layout.fragment_coroutines) {
                                 && CoroutinesSettings.isStoppedOnBackground
                                 && !CoroutinesSettings.isAsync) {
                                 CoroutinesSettings.cancelAll()
-                                break
+                                return@withContext
                             }
                             if (binding.asyncCb.isChecked) {
                                 jobsList.add(async(start=CoroutineStart.LAZY) { getRandomNumber(i) })
@@ -69,6 +69,8 @@ class CoroutinesFragment : Fragment(R.layout.fragment_coroutines) {
                         if (binding.asyncCb.isChecked) {
                             jobsList.awaitAll()
                         }
+                        CoroutinesSettings.outputAll()
+                        jobsList.clear()
                     }
                 }
             }
