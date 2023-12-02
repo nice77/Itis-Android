@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Task</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="submit">submit</string>
+    <string name="register">Register</string>
+    <string name="authorization">Authorization</string>
+    <string name="name">name</string>
+    <string name="phone">phone</string>
 </resources>

@@ -1,0 +1,31 @@
+package com.example.task.data.dao
+
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.Update
+import com.example.task.data.entities.User
+import com.example.task.data.entities.UserWithFilms
+
+@Dao
+interface UserDao {
+    @Insert(onConflict=OnConflictStrategy.ABORT)
+    fun add(user : User)
+
+    @Query("SELECT * FROM users")
+    fun getAll() : List<User>
+
+    @Query("SELECT * FROM users WHERE phone = :id")
+    fun getUserById(id : Int) : User
+
+    @Update
+    fun update(user : User)
+
+    @Delete
+    fun delete(user : User)
+
+    @Query("SELECT * FROM users WHERE id = :id")
+    fun getAllUsersWithFilms(id : Int) : List<UserWithFilms>
+}
