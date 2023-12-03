@@ -10,6 +10,9 @@
         <action
             android:id="@+id/action_authFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_authFragment_to_mainPageFragment"
+            app:destination="@id/mainPageFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -19,4 +22,8 @@
             android:id="@+id/action_registerFragment_to_authFragment"
             app:destination="@id/authFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/mainPageFragment"
+        android:name="com.example.task.ui.fragments.MainPageFragment"
+        android:label="MainPageFragment" />
 </navigation>

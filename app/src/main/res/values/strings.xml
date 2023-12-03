@@ -7,4 +7,10 @@
     <string name="authorization">Authorization</string>
     <string name="name">name</string>
     <string name="phone">phone</string>
+    <string name="phone_in_use">Phone is already in use!</string>
+    <string name="enter_all_fields">All fields required!</string>
+    <string name="wrong_credentials">Wrong credentials!</string>
+    <string name="films">Films</string>
+    <string name="add_film">Add film</string>
+    <string name="profile">profile</string>
 </resources>

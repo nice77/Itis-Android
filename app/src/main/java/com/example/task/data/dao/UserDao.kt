@@ -28,4 +28,10 @@ interface UserDao {
 
     @Query("SELECT * FROM users WHERE id = :id")
     fun getAllUsersWithFilms(id : Int) : List<UserWithFilms>
+
+    @Query("SELECT EXISTS (SELECT 1 FROM users WHERE phone = :phone LIMIT 1)")
+    fun checkIfNumberExists(phone : String) : Boolean
+
+    @Query("SELECT EXISTS (SELECT 1 FROM users WHERE email = :email AND password = :password LIMIT 1)")
+    fun checkUserCredentials(email : String, password : String) : Boolean
 }

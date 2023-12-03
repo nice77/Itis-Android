@@ -5,9 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.task.R
+import com.example.task.data.repository.UserRepository
 import com.example.task.databinding.FragmentAuthBinding
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.launch
 
 class AuthFragment : Fragment(R.layout.fragment_auth) {
 
@@ -26,10 +30,25 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAuthBinding.bind(view)
         binding?.let { binding ->
+
             binding.redirectBtn.setOnClickListener {
-                println(42)
                 findNavController().navigate(R.id.action_authFragment_to_registerFragment)
             }
+
+            binding.submitBtn.setOnClickListener {
+                lifecycleScope.launch {
+                    val email : String = binding.emailEt.text.toString()
+                    val password : String = binding.passwordEt.text.toString()
+                    val userRepository = UserRepository(requireContext())
+                    if (userRepository.checkUserCredentials(email, password)) {
+                        findNavController().navigate(R.id.action_authFragment_to_mainPageFragment)
+                    }
+                    else {
+                        Snackbar.make(binding.root, getString(R.string.wrong_credentials), Snackbar.LENGTH_LONG).show()
+                    }
+                }
+            }
+
         }
     }
 }

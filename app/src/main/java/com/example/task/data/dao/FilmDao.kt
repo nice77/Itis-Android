@@ -16,9 +16,6 @@ interface FilmDao {
     @Query("SELECT * FROM films")
     fun getAll() : List<Film>
 
-    @Query("SELECT * FROM films WHERE id = :id")
-    fun getFilmById(id : Int) : Film
-
     @Update
     fun update(film : Film)
 

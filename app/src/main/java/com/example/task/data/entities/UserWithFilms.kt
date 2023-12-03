@@ -8,9 +8,14 @@ data class UserWithFilms(
     @Embedded val user : User,
     @Relation(
         parentColumn="id",
-        entityColumn="filmId",
+        entityColumn="id",
+        entity=Film::class,
         associateBy=
-            Junction(UserFilmCrossRef::class)
+            Junction(
+                UserFilmCrossRef::class,
+                parentColumn="user_id",
+                entityColumn="film_id"
+            )
     )
     val films : List<Film>
 )

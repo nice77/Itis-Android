@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+    android:id="@+id/filmsFragment"
+    android:title="@string/films"
+    android:icon="@drawable/baseline_local_movies_24"
+/>
+<item
+    android:id="@+id/createNewFragment"
+    android:title="@string/add_film"
+    android:icon="@drawable/baseline_add_24"
+/>
+<item
+    android:id="@+id/profileFragment"
+    android:title="@string/profile"
+    android:icon="@drawable/baseline_person_24"
+/>
+</menu>

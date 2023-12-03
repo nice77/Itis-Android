@@ -5,22 +5,22 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 
 @Entity(
-    primaryKeys=["userId", "filmId"],
+    primaryKeys=["user_id", "film_id"],
     foreignKeys=[
         ForeignKey(
             entity=User::class,
             parentColumns=["id"],
-            childColumns=["userId"]
+            childColumns=["user_id"]
         ),
         ForeignKey(
             entity=Film::class,
             parentColumns=["id"],
-            childColumns=["filmId"]
+            childColumns=["film_id"]
         )
     ])
 data class UserFilmCrossRef(
-//    @ColumnInfo(name="user_id")
+    @ColumnInfo(name="user_id")
     val userId : Int,
-//    @ColumnInfo(name="film_id")
+    @ColumnInfo(name="film_id")
     val filmId : Int
 )

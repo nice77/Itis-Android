@@ -7,9 +7,7 @@ import com.example.task.data.AppDatabase
 
 class App : Application() {
     override fun onCreate() {
-        println(43)
         super.onCreate()
-        println(44)
         instance = this
         database = Room.databaseBuilder(this, AppDatabase::class.java, DATABASE_NAME)
             .build()

@@ -25,11 +25,12 @@ class FilmsFragment : Fragment(R.layout.fragment_films) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        println("OnViewCreated in FilmsFragment")
         binding = FragmentFilmsBinding.bind(view)
 
         binding?.let { binding ->
-            binding.favoritesRv.adapter = AdapterFavorites()
-            binding.filmsRv.adapter = AdapterFilms()
+//            binding.favoritesRv.adapter = AdapterFavorites()
+//            binding.filmsRv.adapter = AdapterFilms()
         }
     }
 }
