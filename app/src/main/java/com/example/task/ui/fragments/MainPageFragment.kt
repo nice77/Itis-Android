@@ -18,15 +18,6 @@ class MainPageFragment : Fragment(R.layout.fragment_main_page) {
 
     private var binding : FragmentMainPageBinding ?= null
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentMainPageBinding.inflate(inflater, container, false)
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMainPageBinding.bind(view)

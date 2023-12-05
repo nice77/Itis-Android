@@ -4,14 +4,161 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:text="profile"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/user_info_card"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:textSize="16pt"/>
+        app:layout_constraintBottom_toTopOf="@id/user_settings_card"
+        app:cardUseCompatPadding="true"
+        android:layout_marginHorizontal="16dp"
+        app:cardCornerRadius="8dp"
+        android:elevation="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/name_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/phone_tv"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:textSize="12pt"
+                android:textColor="@color/black"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/phone_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/name_tv"
+                app:layout_constraintBottom_toTopOf="@+id/email_tv"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:textSize="8pt"
+                android:textColor="@color/black"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/email_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/phone_tv"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:textSize="8pt"
+                android:textColor="@color/black"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/user_settings_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/user_info_card"
+        app:layout_constraintBottom_toTopOf="@id/exit_btn"
+        app:cardUseCompatPadding="true"
+        android:layout_marginHorizontal="16dp"
+        app:cardCornerRadius="8dp"
+        android:elevation="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:text="@string/settings"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="10pt"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/settings_name_tv"/>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/settings_name_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input_shape"
+                app:layout_constraintTop_toBottomOf="@id/title_tv"
+                app:layout_constraintBottom_toTopOf="@id/settings_phone_tv"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:padding="16dp"
+                android:textColor="@color/black"/>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/settings_phone_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input_shape"
+                app:layout_constraintTop_toBottomOf="@id/settings_name_tv"
+                app:layout_constraintBottom_toTopOf="@+id/settings_email_tv"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:padding="16dp"
+                android:textColor="@color/black"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/settings_email_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input_shape"
+                app:layout_constraintTop_toBottomOf="@id/settings_phone_tv"
+                app:layout_constraintBottom_toTopOf="@id/settings_password_tv"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:padding="16dp"
+                android:textColor="@color/black"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/settings_password_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input_shape"
+                app:layout_constraintTop_toBottomOf="@id/settings_email_tv"
+                app:layout_constraintBottom_toTopOf="@id/submit_btn"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:padding="16dp"
+                android:hint="@string/new_password"
+                android:textColor="@color/black"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/submit_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/settings_password_tv"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/submit_button_shape"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:text="@string/submit"
+                android:textColor="@color/white"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/exit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/user_settings_card"
+        android:background="@drawable/dismiss_button_shape"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        android:text="@string/logout"
+        android:textColor="@color/white"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

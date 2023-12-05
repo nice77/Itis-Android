@@ -21,15 +21,6 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
     private var binding : FragmentRegisterBinding ?= null
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentRegisterBinding.inflate(layoutInflater)
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRegisterBinding.bind(view)
@@ -52,7 +43,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                 )
 
                 lifecycleScope.launch {
-                    val userRepository = UserRepository(requireContext())
+                    val userRepository = UserRepository()
                     if (!userRepository.addUser(user)) {
                         Snackbar.make(binding.root, getString(R.string.phone_in_use), Snackbar.LENGTH_LONG).show()
                     }
